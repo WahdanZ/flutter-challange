@@ -22,6 +22,12 @@ class _$FailureTearOff {
     );
   }
 
+  _ExceptionFailure exception(Error code) {
+    return _ExceptionFailure(
+      code,
+    );
+  }
+
   _NetworkException networkException(dynamic message) {
     return _NetworkException(
       message,
@@ -37,12 +43,14 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String code) $default, {
+    required TResult Function(Error code) exception,
     required TResult Function(dynamic message) networkException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String code)? $default, {
+    TResult Function(Error code)? exception,
     TResult Function(dynamic message)? networkException,
     required TResult orElse(),
   }) =>
@@ -50,12 +58,14 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(_ErrorFailure value) $default, {
+    required TResult Function(_ExceptionFailure value) exception,
     required TResult Function(_NetworkException value) networkException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_ErrorFailure value)? $default, {
+    TResult Function(_ExceptionFailure value)? exception,
     TResult Function(_NetworkException value)? networkException,
     required TResult orElse(),
   }) =>
@@ -142,6 +152,7 @@ class _$_ErrorFailure implements _ErrorFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String code) $default, {
+    required TResult Function(Error code) exception,
     required TResult Function(dynamic message) networkException,
   }) {
     return $default(code);
@@ -151,6 +162,7 @@ class _$_ErrorFailure implements _ErrorFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String code)? $default, {
+    TResult Function(Error code)? exception,
     TResult Function(dynamic message)? networkException,
     required TResult orElse(),
   }) {
@@ -164,6 +176,7 @@ class _$_ErrorFailure implements _ErrorFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(_ErrorFailure value) $default, {
+    required TResult Function(_ExceptionFailure value) exception,
     required TResult Function(_NetworkException value) networkException,
   }) {
     return $default(this);
@@ -173,6 +186,7 @@ class _$_ErrorFailure implements _ErrorFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_ErrorFailure value)? $default, {
+    TResult Function(_ExceptionFailure value)? exception,
     TResult Function(_NetworkException value)? networkException,
     required TResult orElse(),
   }) {
@@ -189,6 +203,125 @@ abstract class _ErrorFailure implements Failure {
   String get code => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$ErrorFailureCopyWith<_ErrorFailure> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ExceptionFailureCopyWith<$Res> {
+  factory _$ExceptionFailureCopyWith(
+          _ExceptionFailure value, $Res Function(_ExceptionFailure) then) =
+      __$ExceptionFailureCopyWithImpl<$Res>;
+  $Res call({Error code});
+}
+
+/// @nodoc
+class __$ExceptionFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+    implements _$ExceptionFailureCopyWith<$Res> {
+  __$ExceptionFailureCopyWithImpl(
+      _ExceptionFailure _value, $Res Function(_ExceptionFailure) _then)
+      : super(_value, (v) => _then(v as _ExceptionFailure));
+
+  @override
+  _ExceptionFailure get _value => super._value as _ExceptionFailure;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+  }) {
+    return _then(_ExceptionFailure(
+      code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as Error,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ExceptionFailure implements _ExceptionFailure {
+  const _$_ExceptionFailure(this.code);
+
+  @override
+  final Error code;
+
+  @override
+  String toString() {
+    return 'Failure.exception(code: $code)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ExceptionFailure &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(code);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ExceptionFailureCopyWith<_ExceptionFailure> get copyWith =>
+      __$ExceptionFailureCopyWithImpl<_ExceptionFailure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String code) $default, {
+    required TResult Function(Error code) exception,
+    required TResult Function(dynamic message) networkException,
+  }) {
+    return exception(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String code)? $default, {
+    TResult Function(Error code)? exception,
+    TResult Function(dynamic message)? networkException,
+    required TResult orElse(),
+  }) {
+    if (exception != null) {
+      return exception(code);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ErrorFailure value) $default, {
+    required TResult Function(_ExceptionFailure value) exception,
+    required TResult Function(_NetworkException value) networkException,
+  }) {
+    return exception(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ErrorFailure value)? $default, {
+    TResult Function(_ExceptionFailure value)? exception,
+    TResult Function(_NetworkException value)? networkException,
+    required TResult orElse(),
+  }) {
+    if (exception != null) {
+      return exception(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ExceptionFailure implements Failure {
+  const factory _ExceptionFailure(Error code) = _$_ExceptionFailure;
+
+  Error get code => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$ExceptionFailureCopyWith<_ExceptionFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -257,6 +390,7 @@ class _$_NetworkException implements _NetworkException {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String code) $default, {
+    required TResult Function(Error code) exception,
     required TResult Function(dynamic message) networkException,
   }) {
     return networkException(message);
@@ -266,6 +400,7 @@ class _$_NetworkException implements _NetworkException {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String code)? $default, {
+    TResult Function(Error code)? exception,
     TResult Function(dynamic message)? networkException,
     required TResult orElse(),
   }) {
@@ -279,6 +414,7 @@ class _$_NetworkException implements _NetworkException {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(_ErrorFailure value) $default, {
+    required TResult Function(_ExceptionFailure value) exception,
     required TResult Function(_NetworkException value) networkException,
   }) {
     return networkException(this);
@@ -288,6 +424,7 @@ class _$_NetworkException implements _NetworkException {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_ErrorFailure value)? $default, {
+    TResult Function(_ExceptionFailure value)? exception,
     TResult Function(_NetworkException value)? networkException,
     required TResult orElse(),
   }) {

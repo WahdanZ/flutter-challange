@@ -25,7 +25,7 @@ class NetworkTask<T> {
           }
           if (e.response?.statusCode != null) {
             return networkErrorMapping?.call(e, errorMapping) ??
-                _networkErrorMapping(e, errorMapping);
+                _networkErrorMapping<T>(e, errorMapping);
           }
         }
         return _onError<T>(error, error.stackTrace);
@@ -41,19 +41,21 @@ CustomResult<T> _networkErrorMapping<T>(
     DioError e, ErrorMapping? errorMapping) {
   switch (e.response!.statusCode) {
     case 403:
-      return const CustomResult.httpErrors(HttpErrors.resourceForbidden());
+      return CustomResult<T>.httpErrors(const HttpErrors.resourceForbidden());
     case 404:
-      return const CustomResult.httpErrors(HttpErrors.resourceNotFound());
+      return CustomResult<T>.httpErrors(const HttpErrors.resourceNotFound());
     case 500:
-      return const CustomResult.httpErrors(HttpErrors.internalServiceError());
+      return CustomResult<T>.httpErrors(
+          const HttpErrors.internalServiceError());
     case 502:
-      return const CustomResult.httpErrors(HttpErrors.badGateWay());
+      return CustomResult<T>.httpErrors(const HttpErrors.badGateWay());
     case 301:
-      return const CustomResult.httpErrors(HttpErrors.resourceRemoved());
+      return CustomResult<T>.httpErrors(const HttpErrors.resourceRemoved());
     case 302:
-      return const CustomResult.httpErrors(HttpErrors.removedResourceFound());
+      return CustomResult<T>.httpErrors(
+          const HttpErrors.removedResourceFound());
     default:
-      return CustomResult.failure((errorMapping?.call(
+      return CustomResult<T>.failure((errorMapping?.call(
               e.response?.data as Map<dynamic, dynamic>?,
               code: e.response?.statusCode)) ??
           Failure.networkException(e.error?.toString()));
