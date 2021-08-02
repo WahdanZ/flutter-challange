@@ -14,10 +14,10 @@ class BaseService {
 
 mixin BaseServiceMixin {
   void initLog() {
-    logger = getLogger(
+    log = getLogger(
       runtimeType.toString(),
     );
   }
 
-  Logger? logger;
+  Logger? log;
 }
