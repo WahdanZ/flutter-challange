@@ -11,9 +11,7 @@ _$_Location _$_$_LocationFromJson(Map<String, dynamic> json) {
     coordinates: json['coordinates'] == null
         ? null
         : Coordinates.fromJson(json['coordinates'] as Map<String, dynamic>),
-    address: json['address'] == null
-        ? null
-        : Address.fromJson(json['address'] as Map<String, dynamic>),
+    address: _addressFromJson(json['address']),
   );
 }
 

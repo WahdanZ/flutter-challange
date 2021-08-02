@@ -18,5 +18,6 @@ abstract class MerchantClient {
 
   @GET('/merchants/')
   Future<MerchantResponse> getMerchants(
-      {@Query('limit') String limit, @Query('offset') String offset});
+      {@Query('limit') String limit = '100',
+      @Query('offset') String offset = '0'});
 }

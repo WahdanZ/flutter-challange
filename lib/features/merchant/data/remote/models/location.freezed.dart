@@ -22,7 +22,7 @@ class _$LocationTearOff {
 
   _Location call(
       {@JsonKey(name: 'coordinates') Coordinates? coordinates,
-      @JsonKey(name: 'address') Address? address}) {
+      @JsonKey(name: 'address', fromJson: _addressFromJson) Address? address}) {
     return _Location(
       coordinates: coordinates,
       address: address,
@@ -41,7 +41,7 @@ const $Location = _$LocationTearOff();
 mixin _$Location {
   @JsonKey(name: 'coordinates')
   Coordinates? get coordinates => throw _privateConstructorUsedError;
-  @JsonKey(name: 'address')
+  @JsonKey(name: 'address', fromJson: _addressFromJson)
   Address? get address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,7 +56,7 @@ abstract class $LocationCopyWith<$Res> {
       _$LocationCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'coordinates') Coordinates? coordinates,
-      @JsonKey(name: 'address') Address? address});
+      @JsonKey(name: 'address', fromJson: _addressFromJson) Address? address});
 
   $CoordinatesCopyWith<$Res>? get coordinates;
   $AddressCopyWith<$Res>? get address;
@@ -117,7 +117,7 @@ abstract class _$LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
   @override
   $Res call(
       {@JsonKey(name: 'coordinates') Coordinates? coordinates,
-      @JsonKey(name: 'address') Address? address});
+      @JsonKey(name: 'address', fromJson: _addressFromJson) Address? address});
 
   @override
   $CoordinatesCopyWith<$Res>? get coordinates;
@@ -157,7 +157,7 @@ class __$LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
 class _$_Location implements _Location {
   _$_Location(
       {@JsonKey(name: 'coordinates') this.coordinates,
-      @JsonKey(name: 'address') this.address});
+      @JsonKey(name: 'address', fromJson: _addressFromJson) this.address});
 
   factory _$_Location.fromJson(Map<String, dynamic> json) =>
       _$_$_LocationFromJson(json);
@@ -166,7 +166,7 @@ class _$_Location implements _Location {
   @JsonKey(name: 'coordinates')
   final Coordinates? coordinates;
   @override
-  @JsonKey(name: 'address')
+  @JsonKey(name: 'address', fromJson: _addressFromJson)
   final Address? address;
 
   @override
@@ -204,8 +204,10 @@ class _$_Location implements _Location {
 
 abstract class _Location implements Location {
   factory _Location(
-      {@JsonKey(name: 'coordinates') Coordinates? coordinates,
-      @JsonKey(name: 'address') Address? address}) = _$_Location;
+      {@JsonKey(name: 'coordinates')
+          Coordinates? coordinates,
+      @JsonKey(name: 'address', fromJson: _addressFromJson)
+          Address? address}) = _$_Location;
 
   factory _Location.fromJson(Map<String, dynamic> json) = _$_Location.fromJson;
 
@@ -213,7 +215,7 @@ abstract class _Location implements Location {
   @JsonKey(name: 'coordinates')
   Coordinates? get coordinates => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'address')
+  @JsonKey(name: 'address', fromJson: _addressFromJson)
   Address? get address => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

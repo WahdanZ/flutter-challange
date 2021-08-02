@@ -21,8 +21,8 @@ class _$CoordinatesTearOff {
   const _$CoordinatesTearOff();
 
   _Coordinates call(
-      {@JsonKey(name: 'latitude') int? latitude,
-      @JsonKey(name: 'longitude') int? longitude}) {
+      {@JsonKey(name: 'latitude') double? latitude,
+      @JsonKey(name: 'longitude') double? longitude}) {
     return _Coordinates(
       latitude: latitude,
       longitude: longitude,
@@ -40,9 +40,9 @@ const $Coordinates = _$CoordinatesTearOff();
 /// @nodoc
 mixin _$Coordinates {
   @JsonKey(name: 'latitude')
-  int? get latitude => throw _privateConstructorUsedError;
+  double? get latitude => throw _privateConstructorUsedError;
   @JsonKey(name: 'longitude')
-  int? get longitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,8 +56,8 @@ abstract class $CoordinatesCopyWith<$Res> {
           Coordinates value, $Res Function(Coordinates) then) =
       _$CoordinatesCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'latitude') int? latitude,
-      @JsonKey(name: 'longitude') int? longitude});
+      {@JsonKey(name: 'latitude') double? latitude,
+      @JsonKey(name: 'longitude') double? longitude});
 }
 
 /// @nodoc
@@ -77,11 +77,11 @@ class _$CoordinatesCopyWithImpl<$Res> implements $CoordinatesCopyWith<$Res> {
       latitude: latitude == freezed
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       longitude: longitude == freezed
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ));
   }
 }
@@ -94,8 +94,8 @@ abstract class _$CoordinatesCopyWith<$Res>
       __$CoordinatesCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'latitude') int? latitude,
-      @JsonKey(name: 'longitude') int? longitude});
+      {@JsonKey(name: 'latitude') double? latitude,
+      @JsonKey(name: 'longitude') double? longitude});
 }
 
 /// @nodoc
@@ -117,11 +117,11 @@ class __$CoordinatesCopyWithImpl<$Res> extends _$CoordinatesCopyWithImpl<$Res>
       latitude: latitude == freezed
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       longitude: longitude == freezed
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ));
   }
 }
@@ -138,10 +138,10 @@ class _$_Coordinates implements _Coordinates {
 
   @override
   @JsonKey(name: 'latitude')
-  final int? latitude;
+  final double? latitude;
   @override
   @JsonKey(name: 'longitude')
-  final int? longitude;
+  final double? longitude;
 
   @override
   String toString() {
@@ -179,18 +179,18 @@ class _$_Coordinates implements _Coordinates {
 
 abstract class _Coordinates implements Coordinates {
   factory _Coordinates(
-      {@JsonKey(name: 'latitude') int? latitude,
-      @JsonKey(name: 'longitude') int? longitude}) = _$_Coordinates;
+      {@JsonKey(name: 'latitude') double? latitude,
+      @JsonKey(name: 'longitude') double? longitude}) = _$_Coordinates;
 
   factory _Coordinates.fromJson(Map<String, dynamic> json) =
       _$_Coordinates.fromJson;
 
   @override
   @JsonKey(name: 'latitude')
-  int? get latitude => throw _privateConstructorUsedError;
+  double? get latitude => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'longitude')
-  int? get longitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CoordinatesCopyWith<_Coordinates> get copyWith =>

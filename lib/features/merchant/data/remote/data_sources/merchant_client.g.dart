@@ -29,8 +29,7 @@ class _MerchantClient implements MerchantClient {
   }
 
   @override
-  Future<MerchantResponse> getMerchants(
-      {required limit, required offset}) async {
+  Future<MerchantResponse> getMerchants({limit = '100', offset = '0'}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'limit': limit,
