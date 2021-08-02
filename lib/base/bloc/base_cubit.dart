@@ -9,6 +9,7 @@ abstract class BaseCubit<T> extends Cubit<BaseState<T>> {
   BaseCubit() : super(BaseState<T>.initial()) {
     logger = getLogger(runtimeType.toString());
   }
+
   void emitSuccess(T t) {
     emit(BaseState(result: t));
   }
@@ -22,10 +23,11 @@ abstract class BaseCubit<T> extends Cubit<BaseState<T>> {
   }
 
   late Logger logger;
+
   BaseState<T> httpErrorsToState(HttpErrors httpErrors) {
     return httpErrors.when(
         resourceForbidden: (_) => BaseState.failure(_),
-        resourceNotFound: (_) => BaseState.failure(_),
+        resourceNotFound: (_) => const BaseState.noData(),
         internalServiceError: (_) => BaseState.failure(_),
         badGateWay: (_) => BaseState.failure(_),
         resourceRemoved: (_) => BaseState.failure(_),

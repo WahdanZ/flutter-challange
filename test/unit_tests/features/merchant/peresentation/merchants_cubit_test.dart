@@ -24,7 +24,7 @@ void main() {
     });
 
     blocTest<MerchantsCubit, BaseState<PaginatedEntity<MerchantEntity>>>(
-      'emits No data when city not found',
+      'emits No data when resourceNotFound ',
       build: () {
         when(() => merchentRepository.getMerchants(offset: 0, limit: 30))
             .thenAnswer((_) => Future.value(
@@ -56,18 +56,24 @@ void main() {
     blocTest<MerchantsCubit, BaseState<PaginatedEntity<MerchantEntity>>>(
       'emits Date result when load more ',
       build: () {
-        when(() => merchentRepository.getMerchants(offset: 10, limit: 30))
-            .thenAnswer((_) => Future.value(
-                CustomResult<PaginatedEntity<MerchantEntity>>(
-                    mockPaginatedEntity)));
+        when(() {
+          return merchentRepository.getMerchants(offset: 0, limit: 30);
+        }).thenAnswer((_) => Future.value(
+            CustomResult<PaginatedEntity<MerchantEntity>>(
+                mockPaginatedEntity)));
         return inject<MerchantsCubit>();
       },
-      act: (cubit) => cubit.getMerchants(),
+      act: (cubit) {
+        return cubit.loadMore();
+      },
       expect: () => [
-        const BaseState<PaginatedEntity<MerchantEntity>>.loading(),
-        BaseState<PaginatedEntity<MerchantEntity>>(result: mockPaginatedEntity)
+        BaseState<PaginatedEntity<MerchantEntity>>(
+            result: mockPaginatedEntity.copyWith(items: [
+          ...mockPaginatedEntity.items,
+        ]))
       ],
     );
+
     blocTest<MerchantsCubit, BaseState<PaginatedEntity<MerchantEntity>>>(
       'emits Error when get Custom Result Fail',
       build: () {
