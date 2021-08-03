@@ -8,7 +8,11 @@ class MerchantsDetailsCubit extends BaseCubit<MerchantEntity> {
 
   MerchantsDetailsCubit(this.getMerchantUseCase);
 
-  void getMerchant(String id) {
+  void getMerchant(String? id) {
+    if (id == null) {
+      emit(const BaseState.noData());
+      return;
+    }
     emit(const BaseState.loading());
     getMerchantUseCase
         .execute(params: GetMerchantUseCaseParams(id))
