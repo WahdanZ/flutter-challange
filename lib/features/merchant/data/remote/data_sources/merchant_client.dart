@@ -10,13 +10,13 @@ part 'merchant_client.g.dart';
 @injectable
 abstract class MerchantClient {
   @factoryMethod
-  factory MerchantClient(@Named('quandoo_dio') Dio dio,
+  factory MerchantClient(@Named('merchant_dio') Dio dio,
       {@Named('base_url') String baseUrl}) = _MerchantClient;
 
-  @GET('/merchants/{merchantId}/')
+  @GET('/merchants/{merchantId}')
   Future<Merchants> getMerchant(@Path('merchantId') String merchantId);
 
-  @GET('/merchants/')
+  @GET('/merchants')
   Future<MerchantResponse> getMerchants(
       {@Query('limit') String limit = '100',
       @Query('offset') String offset = '0'});

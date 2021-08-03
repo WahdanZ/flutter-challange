@@ -21,7 +21,7 @@ class _MerchantClient implements MerchantClient {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<Merchants>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/merchants/$merchantId/',
+                .compose(_dio.options, '/merchants/$merchantId',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Merchants.fromJson(_result.data!);
@@ -39,7 +39,7 @@ class _MerchantClient implements MerchantClient {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<MerchantResponse>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/merchants/',
+                .compose(_dio.options, '/merchants',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = MerchantResponse.fromJson(_result.data!);

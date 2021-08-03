@@ -21,7 +21,7 @@ class _$TagsTearOff {
   const _$TagsTearOff();
 
   _Tags call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'name') String? name}) {
+      {@JsonKey(name: 'id') String? id, @JsonKey(name: 'name') String? name}) {
     return _Tags(
       id: id,
       name: name,
@@ -39,7 +39,7 @@ const $Tags = _$TagsTearOff();
 /// @nodoc
 mixin _$Tags {
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
 
@@ -53,7 +53,7 @@ abstract class $TagsCopyWith<$Res> {
   factory $TagsCopyWith(Tags value, $Res Function(Tags) then) =
       _$TagsCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'name') String? name});
+      {@JsonKey(name: 'id') String? id, @JsonKey(name: 'name') String? name});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$TagsCopyWithImpl<$Res> implements $TagsCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -88,7 +88,7 @@ abstract class _$TagsCopyWith<$Res> implements $TagsCopyWith<$Res> {
       __$TagsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'name') String? name});
+      {@JsonKey(name: 'id') String? id, @JsonKey(name: 'name') String? name});
 }
 
 /// @nodoc
@@ -109,7 +109,7 @@ class __$TagsCopyWithImpl<$Res> extends _$TagsCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -128,7 +128,7 @@ class _$_Tags implements _Tags {
 
   @override
   @JsonKey(name: 'id')
-  final int? id;
+  final String? id;
   @override
   @JsonKey(name: 'name')
   final String? name;
@@ -167,14 +167,14 @@ class _$_Tags implements _Tags {
 
 abstract class _Tags implements Tags {
   factory _Tags(
-      {@JsonKey(name: 'id') int? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'name') String? name}) = _$_Tags;
 
   factory _Tags.fromJson(Map<String, dynamic> json) = _$_Tags.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;

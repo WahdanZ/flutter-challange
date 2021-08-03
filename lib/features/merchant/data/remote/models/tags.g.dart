@@ -8,7 +8,7 @@ part of 'tags.dart';
 
 _$_Tags _$_$_TagsFromJson(Map<String, dynamic> json) {
   return _$_Tags(
-    id: json['id'] as int?,
+    id: json['id'] as String?,
     name: json['name'] as String?,
   );
 }
