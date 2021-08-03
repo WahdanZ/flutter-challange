@@ -17,11 +17,17 @@ class _$PaginatedEntityTearOff {
   const _$PaginatedEntityTearOff();
 
   _PaginatedEntity<ITEM> call<ITEM>(
-      {List<ITEM> items = const [], int offset = 0, int limit = 100}) {
+      {List<ITEM> items = const [],
+      int offset = 0,
+      int limit = 100,
+      int size = 0,
+      bool loadMore = true}) {
     return _PaginatedEntity<ITEM>(
       items: items,
       offset: offset,
       limit: limit,
+      size: size,
+      loadMore: loadMore,
     );
   }
 }
@@ -34,6 +40,8 @@ mixin _$PaginatedEntity<ITEM> {
   List<ITEM> get items => throw _privateConstructorUsedError;
   int get offset => throw _privateConstructorUsedError;
   int get limit => throw _privateConstructorUsedError;
+  int get size => throw _privateConstructorUsedError;
+  bool get loadMore => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PaginatedEntityCopyWith<ITEM, PaginatedEntity<ITEM>> get copyWith =>
@@ -45,7 +53,7 @@ abstract class $PaginatedEntityCopyWith<ITEM, $Res> {
   factory $PaginatedEntityCopyWith(PaginatedEntity<ITEM> value,
           $Res Function(PaginatedEntity<ITEM>) then) =
       _$PaginatedEntityCopyWithImpl<ITEM, $Res>;
-  $Res call({List<ITEM> items, int offset, int limit});
+  $Res call({List<ITEM> items, int offset, int limit, int size, bool loadMore});
 }
 
 /// @nodoc
@@ -62,6 +70,8 @@ class _$PaginatedEntityCopyWithImpl<ITEM, $Res>
     Object? items = freezed,
     Object? offset = freezed,
     Object? limit = freezed,
+    Object? size = freezed,
+    Object? loadMore = freezed,
   }) {
     return _then(_value.copyWith(
       items: items == freezed
@@ -76,6 +86,14 @@ class _$PaginatedEntityCopyWithImpl<ITEM, $Res>
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
               as int,
+      size: size == freezed
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int,
+      loadMore: loadMore == freezed
+          ? _value.loadMore
+          : loadMore // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -87,7 +105,7 @@ abstract class _$PaginatedEntityCopyWith<ITEM, $Res>
           $Res Function(_PaginatedEntity<ITEM>) then) =
       __$PaginatedEntityCopyWithImpl<ITEM, $Res>;
   @override
-  $Res call({List<ITEM> items, int offset, int limit});
+  $Res call({List<ITEM> items, int offset, int limit, int size, bool loadMore});
 }
 
 /// @nodoc
@@ -106,6 +124,8 @@ class __$PaginatedEntityCopyWithImpl<ITEM, $Res>
     Object? items = freezed,
     Object? offset = freezed,
     Object? limit = freezed,
+    Object? size = freezed,
+    Object? loadMore = freezed,
   }) {
     return _then(_PaginatedEntity<ITEM>(
       items: items == freezed
@@ -120,6 +140,14 @@ class __$PaginatedEntityCopyWithImpl<ITEM, $Res>
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
               as int,
+      size: size == freezed
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int,
+      loadMore: loadMore == freezed
+          ? _value.loadMore
+          : loadMore // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -128,7 +156,11 @@ class __$PaginatedEntityCopyWithImpl<ITEM, $Res>
 
 class _$_PaginatedEntity<ITEM> implements _PaginatedEntity<ITEM> {
   _$_PaginatedEntity(
-      {this.items = const [], this.offset = 0, this.limit = 100});
+      {this.items = const [],
+      this.offset = 0,
+      this.limit = 100,
+      this.size = 0,
+      this.loadMore = true});
 
   @JsonKey(defaultValue: const [])
   @override
@@ -139,10 +171,16 @@ class _$_PaginatedEntity<ITEM> implements _PaginatedEntity<ITEM> {
   @JsonKey(defaultValue: 100)
   @override
   final int limit;
+  @JsonKey(defaultValue: 0)
+  @override
+  final int size;
+  @JsonKey(defaultValue: true)
+  @override
+  final bool loadMore;
 
   @override
   String toString() {
-    return 'PaginatedEntity<$ITEM>(items: $items, offset: $offset, limit: $limit)';
+    return 'PaginatedEntity<$ITEM>(items: $items, offset: $offset, limit: $limit, size: $size, loadMore: $loadMore)';
   }
 
   @override
@@ -154,7 +192,12 @@ class _$_PaginatedEntity<ITEM> implements _PaginatedEntity<ITEM> {
             (identical(other.offset, offset) ||
                 const DeepCollectionEquality().equals(other.offset, offset)) &&
             (identical(other.limit, limit) ||
-                const DeepCollectionEquality().equals(other.limit, limit)));
+                const DeepCollectionEquality().equals(other.limit, limit)) &&
+            (identical(other.size, size) ||
+                const DeepCollectionEquality().equals(other.size, size)) &&
+            (identical(other.loadMore, loadMore) ||
+                const DeepCollectionEquality()
+                    .equals(other.loadMore, loadMore)));
   }
 
   @override
@@ -162,7 +205,9 @@ class _$_PaginatedEntity<ITEM> implements _PaginatedEntity<ITEM> {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(items) ^
       const DeepCollectionEquality().hash(offset) ^
-      const DeepCollectionEquality().hash(limit);
+      const DeepCollectionEquality().hash(limit) ^
+      const DeepCollectionEquality().hash(size) ^
+      const DeepCollectionEquality().hash(loadMore);
 
   @JsonKey(ignore: true)
   @override
@@ -172,8 +217,12 @@ class _$_PaginatedEntity<ITEM> implements _PaginatedEntity<ITEM> {
 }
 
 abstract class _PaginatedEntity<ITEM> implements PaginatedEntity<ITEM> {
-  factory _PaginatedEntity({List<ITEM> items, int offset, int limit}) =
-      _$_PaginatedEntity<ITEM>;
+  factory _PaginatedEntity(
+      {List<ITEM> items,
+      int offset,
+      int limit,
+      int size,
+      bool loadMore}) = _$_PaginatedEntity<ITEM>;
 
   @override
   List<ITEM> get items => throw _privateConstructorUsedError;
@@ -181,6 +230,10 @@ abstract class _PaginatedEntity<ITEM> implements PaginatedEntity<ITEM> {
   int get offset => throw _privateConstructorUsedError;
   @override
   int get limit => throw _privateConstructorUsedError;
+  @override
+  int get size => throw _privateConstructorUsedError;
+  @override
+  bool get loadMore => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PaginatedEntityCopyWith<ITEM, _PaginatedEntity<ITEM>> get copyWith =>
