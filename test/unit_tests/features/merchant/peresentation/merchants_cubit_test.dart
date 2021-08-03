@@ -23,70 +23,68 @@ void main() {
       expect(inject<MerchantsCubit>().state, const BaseState.initial());
     });
 
-    blocTest<MerchantsCubit, BaseState<PaginatedEntity<MerchantEntity>>>(
+    blocTest<MerchantsCubit, BaseState<PaginatedMerchantEntity>>(
       'emits No data when resourceNotFound ',
       build: () {
         when(() => merchentRepository.getMerchants(offset: 0, limit: 30))
             .thenAnswer((_) => Future.value(
-                CustomResult<PaginatedEntity<MerchantEntity>>(
+                CustomResult<PaginatedMerchantEntity>(
                     PaginatedEntity(items: []))));
         return inject<MerchantsCubit>();
       },
       act: (cubit) => cubit.getMerchants(),
       expect: () => [
-        const BaseState<PaginatedEntity<MerchantEntity>>.loading(),
-        const BaseState<PaginatedEntity<MerchantEntity>>.noData()
+        const BaseState<PaginatedMerchantEntity>.loading(),
+        const BaseState<PaginatedMerchantEntity>.noData()
       ],
     );
-    blocTest<MerchantsCubit, BaseState<PaginatedEntity<MerchantEntity>>>(
+    blocTest<MerchantsCubit, BaseState<PaginatedMerchantEntity>>(
       'emits Date when get result',
       build: () {
         when(() => merchentRepository.getMerchants(offset: 0, limit: 30))
             .thenAnswer((_) => Future.value(
-                CustomResult<PaginatedEntity<MerchantEntity>>(
-                    mockPaginatedEntity)));
+                CustomResult<PaginatedMerchantEntity>(mockPaginatedEntity)));
         return inject<MerchantsCubit>();
       },
       act: (cubit) => cubit.getMerchants(),
       expect: () => [
-        const BaseState<PaginatedEntity<MerchantEntity>>.loading(),
-        BaseState<PaginatedEntity<MerchantEntity>>(result: mockPaginatedEntity)
+        const BaseState<PaginatedMerchantEntity>.loading(),
+        BaseState<PaginatedMerchantEntity>(result: mockPaginatedEntity)
       ],
     );
-    blocTest<MerchantsCubit, BaseState<PaginatedEntity<MerchantEntity>>>(
+    blocTest<MerchantsCubit, BaseState<PaginatedMerchantEntity>>(
       'emits Date result when load more ',
       build: () {
         when(() {
           return merchentRepository.getMerchants(offset: 0, limit: 30);
         }).thenAnswer((_) => Future.value(
-            CustomResult<PaginatedEntity<MerchantEntity>>(
-                mockPaginatedEntity)));
+            CustomResult<PaginatedMerchantEntity>(mockPaginatedEntity)));
         return inject<MerchantsCubit>();
       },
       act: (cubit) {
         return cubit.loadMore();
       },
       expect: () => [
-        BaseState<PaginatedEntity<MerchantEntity>>(
+        BaseState<PaginatedMerchantEntity>(
             result: mockPaginatedEntity.copyWith(items: [
           ...mockPaginatedEntity.items,
         ]))
       ],
     );
 
-    blocTest<MerchantsCubit, BaseState<PaginatedEntity<MerchantEntity>>>(
+    blocTest<MerchantsCubit, BaseState<PaginatedMerchantEntity>>(
       'emits Error when get Custom Result Fail',
       build: () {
         when(() => merchentRepository.getMerchants(offset: 0, limit: 30))
             .thenAnswer((_) => Future.value(
-                const CustomResult<PaginatedEntity<MerchantEntity>>.failure(
+                const CustomResult<PaginatedMerchantEntity>.failure(
                     Failure('error'))));
         return inject<MerchantsCubit>();
       },
       act: (cubit) => cubit.getMerchants(),
       expect: () => [
-        const BaseState<PaginatedEntity<MerchantEntity>>.loading(),
-        const BaseState<PaginatedEntity<MerchantEntity>>.failure('error')
+        const BaseState<PaginatedMerchantEntity>.loading(),
+        const BaseState<PaginatedMerchantEntity>.failure('error')
       ],
     );
   });

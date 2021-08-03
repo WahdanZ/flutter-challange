@@ -223,14 +223,16 @@ const errorBody = '''
   "errorMessage": "string"
 }''';
 final merchantMock1 = MerchantEntity(
+    id: "1",
     name: 'another merchants Zim',
     phoneNumber: null,
     rate: 4.7,
     addressEntity: addressMock1,
     images: [
-      "https://dci5ez2ey8tr9.cloudfront.net/1482eec7-e585-4821-b096-8a9941e0d2eb/25_sld.jpg"
+      'https://dci5ez2ey8tr9.cloudfront.net/1482eec7-e585-4821-b096-8a9941e0d2eb/25_sld.jpg'
     ]);
 final merchantMock2 = MerchantEntity(
+    id: "2",
     name: 'a-merchant-Zim',
     phoneNumber: null,
     rate: 5.3,

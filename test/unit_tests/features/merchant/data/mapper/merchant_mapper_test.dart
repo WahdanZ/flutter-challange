@@ -20,7 +20,10 @@ void main() {
       const addressModel =
           Address(city: 'Cairo', zipcode: '3111', street: 'Cairo st');
       final merchantEntity = MerchantEntity(
-          name: 'KFC', addressEntity: addressEntity, images: const ['1']);
+          id: '1',
+          name: 'KFC',
+          addressEntity: addressEntity,
+          images: const ['1']);
       final merchantModel = Merchants(
           name: 'KFC',
           location: Location(address: addressModel),
