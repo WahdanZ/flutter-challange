@@ -34,20 +34,25 @@ class _MerchantsPageState extends State<MerchantsPage> {
             onError: (context, error) =>
                 const Center(child: Text('Failed to get data')),
             onData: (context, result) {
-              return LoadMore(
-                textBuilder: (_) => '',
-                isFinish: !result.loadMore,
-                onLoadMore: () => cubit.loadMore(),
-                child: ListView.builder(
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: MerchantItemWidget(
-                      merchantEntity: result.items[index],
-                      onTap: () => routeMaster.push(
-                          '${Routes.merchantDetailsRoute}/${result.items[index].id}'),
+              return RefreshIndicator(
+                onRefresh: () async {
+                  cubit.getMerchants();
+                },
+                child: LoadMore(
+                  textBuilder: (_) => '',
+                  isFinish: !result.loadMore,
+                  onLoadMore: () => cubit.loadMore(),
+                  child: ListView.builder(
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: MerchantItemWidget(
+                        merchantEntity: result.items[index],
+                        onTap: () => routeMaster.push(
+                            '${Routes.merchantDetailsRoute}/${result.items[index].id}'),
+                      ),
                     ),
+                    itemCount: result.items.length,
                   ),
-                  itemCount: result.items.length,
                 ),
               );
             }));
