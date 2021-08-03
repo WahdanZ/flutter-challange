@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:quandoo/base/index.dart';
 import 'package:quandoo/features/merchant/domain/entities/address_entity.dart';
 
 part 'merchant_entity.freezed.dart';
@@ -6,6 +7,7 @@ part 'merchant_entity.freezed.dart';
 @freezed
 abstract class MerchantEntity with _$MerchantEntity {
   factory MerchantEntity({
+    required String id,
     required String name,
     String? phoneNumber,
     @Default(0.0) double rate,
@@ -13,3 +15,5 @@ abstract class MerchantEntity with _$MerchantEntity {
     @Default([]) List<String> images,
   }) = _MerchantEntity;
 }
+
+typedef PaginatedMerchantEntity = PaginatedEntity<MerchantEntity>;

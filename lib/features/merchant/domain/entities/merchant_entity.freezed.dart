@@ -17,12 +17,14 @@ class _$MerchantEntityTearOff {
   const _$MerchantEntityTearOff();
 
   _MerchantEntity call(
-      {required String name,
+      {required String id,
+      required String name,
       String? phoneNumber,
       double rate = 0.0,
       AddressEntity? addressEntity,
       List<String> images = const []}) {
     return _MerchantEntity(
+      id: id,
       name: name,
       phoneNumber: phoneNumber,
       rate: rate,
@@ -37,6 +39,7 @@ const $MerchantEntity = _$MerchantEntityTearOff();
 
 /// @nodoc
 mixin _$MerchantEntity {
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   double get rate => throw _privateConstructorUsedError;
@@ -54,7 +57,8 @@ abstract class $MerchantEntityCopyWith<$Res> {
           MerchantEntity value, $Res Function(MerchantEntity) then) =
       _$MerchantEntityCopyWithImpl<$Res>;
   $Res call(
-      {String name,
+      {String id,
+      String name,
       String? phoneNumber,
       double rate,
       AddressEntity? addressEntity,
@@ -74,6 +78,7 @@ class _$MerchantEntityCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? phoneNumber = freezed,
     Object? rate = freezed,
@@ -81,6 +86,10 @@ class _$MerchantEntityCopyWithImpl<$Res>
     Object? images = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -124,7 +133,8 @@ abstract class _$MerchantEntityCopyWith<$Res>
       __$MerchantEntityCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {String id,
+      String name,
       String? phoneNumber,
       double rate,
       AddressEntity? addressEntity,
@@ -147,6 +157,7 @@ class __$MerchantEntityCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? phoneNumber = freezed,
     Object? rate = freezed,
@@ -154,6 +165,10 @@ class __$MerchantEntityCopyWithImpl<$Res>
     Object? images = freezed,
   }) {
     return _then(_MerchantEntity(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -182,12 +197,15 @@ class __$MerchantEntityCopyWithImpl<$Res>
 
 class _$_MerchantEntity implements _MerchantEntity {
   _$_MerchantEntity(
-      {required this.name,
+      {required this.id,
+      required this.name,
       this.phoneNumber,
       this.rate = 0.0,
       this.addressEntity,
       this.images = const []});
 
+  @override
+  final String id;
   @override
   final String name;
   @override
@@ -203,13 +221,15 @@ class _$_MerchantEntity implements _MerchantEntity {
 
   @override
   String toString() {
-    return 'MerchantEntity(name: $name, phoneNumber: $phoneNumber, rate: $rate, addressEntity: $addressEntity, images: $images)';
+    return 'MerchantEntity(id: $id, name: $name, phoneNumber: $phoneNumber, rate: $rate, addressEntity: $addressEntity, images: $images)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _MerchantEntity &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.phoneNumber, phoneNumber) ||
@@ -227,6 +247,7 @@ class _$_MerchantEntity implements _MerchantEntity {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(phoneNumber) ^
       const DeepCollectionEquality().hash(rate) ^
@@ -241,12 +262,15 @@ class _$_MerchantEntity implements _MerchantEntity {
 
 abstract class _MerchantEntity implements MerchantEntity {
   factory _MerchantEntity(
-      {required String name,
+      {required String id,
+      required String name,
       String? phoneNumber,
       double rate,
       AddressEntity? addressEntity,
       List<String> images}) = _$_MerchantEntity;
 
+  @override
+  String get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override

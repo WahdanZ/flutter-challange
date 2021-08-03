@@ -3,14 +3,14 @@ import 'package:quandoo/base/result/result.dart';
 import 'package:quandoo/features/merchant/domain/entities/merchant_entity.dart';
 import 'package:quandoo/features/merchant/domain/repositories/merchent_repository.dart';
 
-class GetAllMerchantUseCase extends UseCaseResult<
-    PaginatedEntity<MerchantEntity>, GetAllMerchantUseCaseParams> {
+class GetAllMerchantUseCase extends UseCaseResult<PaginatedMerchantEntity,
+    GetAllMerchantUseCaseParams> {
   final MerchentRepository _repository;
 
   GetAllMerchantUseCase(this._repository);
 
   @override
-  Future<CustomResult<PaginatedEntity<MerchantEntity>>> buildUseCase(
+  Future<CustomResult<PaginatedMerchantEntity>> buildUseCase(
       GetAllMerchantUseCaseParams params) {
     return _repository.getMerchants(offset: params.offset, limit: params.limit);
   }

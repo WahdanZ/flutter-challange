@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:quandoo/base/domain/entities/paginated_entity.dart';
 import 'package:quandoo/base/remote/network_task.dart';
 import 'package:quandoo/base/result/index.dart';
 import 'package:quandoo/base/service/base_service.dart';
@@ -26,20 +25,21 @@ class MerchantRepositoryImp extends BaseService implements MerchentRepository {
   }
 
   @override
-  Future<CustomResult<PaginatedEntity<MerchantEntity>>> getMerchants(
+  Future<CustomResult<PaginatedMerchantEntity>> getMerchants(
       {int limit = 100, int offset = 0}) {
     return NetworkTask(() => _client.getMerchants(
         limit: limit.toString(), offset: offset.toString())).execute().map((t) {
-      log.d(t);
-      return PaginatedEntity<MerchantEntity>(
+      //log.d(t);
+      return PaginatedMerchantEntity(
           items: t?.merchants
                   ?.map(_merchantMapper.mapFromModel)
                   .whereType<MerchantEntity>()
                   .toList() ??
               [],
-          offset: t?.size?.toInt() ?? offset,
+          size: t?.size ?? 0,
+          offset: t?.offset?.toInt() ?? offset,
           limit: t?.limit?.toInt() ?? limit);
-    }).catchError((e, s) => logError<PaginatedEntity<MerchantEntity>>(e, s));
+    }).catchError((e, s) => logError<PaginatedMerchantEntity>(e, s));
   }
 
   CustomResult<T> logError<T>(error, stackTrace) {

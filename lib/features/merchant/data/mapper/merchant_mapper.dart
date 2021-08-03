@@ -7,6 +7,7 @@ class MerchantMapper extends Mapper<Merchants?, MerchantEntity?> {
   final AddressMapper _addressMapper;
 
   MerchantMapper(this._addressMapper);
+
   @override
   Merchants mapFromEntity(MerchantEntity? type) {
     // TODO: implement mapFromEntity
@@ -19,6 +20,7 @@ class MerchantMapper extends Mapper<Merchants?, MerchantEntity?> {
       return null;
     }
     return MerchantEntity(
+        id: type.id?.toString() ?? '',
         name: type.name ?? '',
         rate: double.tryParse(type.reviewScore ?? '0') ?? 0,
         images:
