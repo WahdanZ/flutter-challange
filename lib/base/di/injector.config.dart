@@ -47,7 +47,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i6.MerchantMapper(get<_i3.AddressMapper>()));
   gh.factory<String>(() => merchantModule.baseUrl, instanceName: 'base_url');
   gh.factory<_i7.MerchantClient>(() => _i7.MerchantClient(
-      get<_i5.Dio>(instanceName: 'quandoo_dio'),
+      get<_i5.Dio>(instanceName: 'merchant_dio'),
       baseUrl: get<String>(instanceName: 'base_url')));
   gh.factory<_i8.MerchentRepository>(
       () => _i9.MerchantRepositoryImp(
