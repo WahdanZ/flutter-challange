@@ -339,6 +339,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  image_cacheing:
+    dependency: "direct main"
+    description:
+      name: image_cacheing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   import_sorter:
     dependency: "direct dev"
     description:
@@ -400,6 +407,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.4"
+  loadmore:
+    dependency: "direct main"
+    description:
+      name: loadmore
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   logger:
     dependency: "direct main"
     description:
