@@ -11,8 +11,8 @@ class GetMerchantUseCase
 
   @override
   Future<CustomResult<MerchantEntity>> buildUseCase(
-      GetMerchantUseCaseParams? params) {
-    return _repository.getMerchant(params!.id);
+      GetMerchantUseCaseParams params) {
+    return _repository.getMerchant(params.id);
   }
 }
 
